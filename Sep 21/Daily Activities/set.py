@@ -14,3 +14,9 @@ print(set_a - set_b)#here we get the answer from the set_a after removing the co
 print(set_b - set_a)#here we get the answer from the set_b after removing the commans
 
 #in difference method whatsoever is written first the answer will come from that set only.
+
+#if you have a list in which you dont want duplicates then we use set -
+names = ["rahul","dhruv","dhruv","tinu"]
+uniqueness = set(names)
+print(uniqueness)
+

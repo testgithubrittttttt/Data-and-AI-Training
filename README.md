@@ -1,2 +1,2 @@
 # Data-and-AI-Training
-In this repository i am ging to upload my daily work
+In this repository i am going to upload my daily work

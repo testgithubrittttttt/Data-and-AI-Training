@@ -1,0 +1,18 @@
+Prepare a Document on the commands for GIT
+To create a Local Repository:
+1.	Open your project Directory.
+2.	Run this command – git init (this is the command we use for creating (.git) folder)
+3.	For adding the files and commit:
+•	Stage all files: git add.
+•	Commit your changes: git commit -m “Your initial commit”
+Push:
+Use git push to send your commits from local to remote repo.
+•	Command – git push origin main (This updates remote branch with all commits you made in the local one.
+Pull:
+It is used to get updates from all remote repo and merge them into your current branch.
+•	Command – git pull origin main (it’s like first fetches the changes and then merging them with local files).
+Fetch:
+It downloads the new changes from remote repo but not merge them automatically. It lets you review changes before merging.
+•	Command - git fetch origin (after fetching you can merge them manually, if you want.
+
+

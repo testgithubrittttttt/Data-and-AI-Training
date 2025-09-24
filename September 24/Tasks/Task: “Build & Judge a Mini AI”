@@ -1,1 +1,72 @@
+## Part 1 — Chronology of AI
+### Write one real-world example for each stage:
 
+Answer - Machine Learning → Spam filteration(spam vs non spam)
+Deep Learning → Netflix movie recommendation
+Computer Vision → Security like password unlocking it with the help of face recognition
+NLP → Siri (understanding our questions and commands and answering them)
+LLMs → Chatgpt which can do whatever we want to just type your prompt in accurate manner.
+
+## Part 2 — Deep Learning Architectures
+### Match the model to the use case:
+1. RNN
+2. LSTM
+3. CNN
+4. Transformer
+Use cases:
+Image recognition
+Text translation (old Google Translate)
+Predicting the next word in ChatGPT
+Early speech-to-text systems
+
+Answer - 1.RNN - Early speech-to-text systems
+2.LSTM -  Text Translation (old google translate)
+3.CNN - Image Recognition
+4.Transformer - Predicitng the next word in chatgpt
+
+## Part 3 — Frameworks
+### Choose one framework (PyTorch / TensorFlow / Keras).
+In one sentence, explain why you would use it if you were a student making a
+cat-vs-dog classifier.
+
+Answer - 
+| Framework | Learning Curve | Syntax Style       | Best For                      |
+|-----------|----------------|--------------------|-------------------------------|
+| Keras     | ⭐ Easiest      | High-level, simple | Beginners, quick prototyping |
+
+out of the three keras is easy to start with, as it has high level api that give you functionality of making the model in very less lines of code and also ideal for image classification.
+
+## Part 4 — Evaluation Metrics
+## Imagine you built a spam filter. Answer:
+Precision: If it marks 10 emails as spam and 7 are truly spam → what’s
+Precision?
+
+Aswer - Precision - TP/FP+TP = 7/10
+
+Recall: If there were 12 spam emails in total, how many did it catch?
+(use same example)
+
+Answer - Recall = TP/TP+FN = 7/12
+
+F1 Score: Use the formula and calculate (round to 2 decimals).
+
+Answer - F1 Score = 2×Precision+Recall/Precision×Rec = 2 * (0.70 + 0.58)/(0.70 * 0.58) = 0.632
+
+MSE/MAE: Predict your friend’s age (actual = 15, prediction = 18). Which
+metric punishes the error more?
+
+Answer - MSE vs MAE (actual=15, prediction=18):
+MAE = |18 - 15| = 3
+MSE = (18 - 15)² = 9
+→ MSE punishes error more (squares the error).
+
+BLEU/ROUGE: AI translated “The cat sat on the mat” as “Cat is on the
+mat.” Which metric (BLEU/ROUGE) do you think would give a high score?
+
+Answer - ROUGE would give a higher score because it focuses more on recall and similar phrases, while BLEU is stricter about exact matches.
+
+## Part 5 — Responsible AI & Explainability
+### You built an AI that predicts loan approvals.A customer asks, “Why was my loan rejected?”. Write one simple way to explain the decision fairly (e.g., “Your income was too
+low compared to the loan size”).
+
+Answer - Your loan was rejected because your income is significantly lower than what is required for the requested loan amount, which may indicate a high risk of default.

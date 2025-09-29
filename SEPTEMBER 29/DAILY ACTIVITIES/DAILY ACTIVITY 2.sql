@@ -85,3 +85,21 @@ END$$
 
 DELIMITER ;
 call GETORDERWITHCUSTOMERS();
+
+DELIMITER $$ 
+CREATE PROCEDURE GETFULLORDERDETAILES()
+BEGIN
+     SELECT o.order_id,
+     od.quantity,
+     c.name as customer_name,
+     p.product_name,
+     (od.quantity*p.price) as total
+     FROM Orders o
+     Join CUSTOMERS c On o.customer_id = c.customer_id
+	 Join ordersdetails od On o.order_id = od.order_id
+     Join PRODUCTS p On od.product_id = p.product_id;
+
+END$$
+
+DELIMITER ;
+call GETFULLORDERDETAILES();

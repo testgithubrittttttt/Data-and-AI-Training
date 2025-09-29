@@ -73,3 +73,15 @@ END$$
 DELIMITER ;
 
 CALL GETALLPRODUCTS();
+
+DELIMITER $$ 
+CREATE PROCEDURE GETORDERWITHCUSTOMERS()
+BEGIN
+     SELECT o.order_id,o.order_date,c.name as customer_name
+     FROM Orders o
+     Join Customers c
+     On o.customer_id = c.customer_id;
+END$$
+
+DELIMITER ;
+call GETORDERWITHCUSTOMERS();

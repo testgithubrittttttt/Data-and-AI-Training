@@ -103,3 +103,39 @@ END$$
 
 DELIMITER ;
 call GETFULLORDERDETAILES();
+
+DELIMITER $$ 
+CREATE PROCEDURE GetCustomerOrders(IN cust_id INT)
+BEGIN
+     SELECT o.order_id,
+     o.order_date,
+     p.price,
+     od.quantity,
+     p.product_name,
+     (od.quantity*p.price) as total
+     FROM Orders o
+	 Join ordersdetails od On o.order_id = od.order_id
+     Join PRODUCTS p On od.product_id = p.product_id
+     Where o.customer_id = cust_id;
+END$$
+
+DELIMITER ;
+call GetCustomerOrders(1);
+
+
+DELIMITER $$ 
+CREATE PROCEDURE GetMonthly_Sales(IN month_no INT, IN year_no INT)
+BEGIN
+     SELECT 
+     Month(o.order_date) as month,
+     YEAR(o.order_date) as year,
+     SUM(od.quantity*p.price) as total_sales
+     FROM Orders o
+	 Join ordersdetails od On o.order_id = od.order_id
+     Join PRODUCTS p On od.product_id = p.product_id
+     Where MONTH(o.order_date) = month_no AND YEAR(o.order_date) = year_no
+     GROUP BY month,year;
+END$$
+
+DELIMITER ;
+call GetMonthly_Sales(9, 2025);

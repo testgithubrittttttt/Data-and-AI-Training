@@ -36,3 +36,66 @@ def test_get_employee_not_found():
     response = client.get("/employees/999")
     assert response.status_code == 404
     assert response.json()["detail"] == "Employee not found"
+
+# -------------- TEST: PUT (update employee) ------------------
+def test_update_employee():
+    # Ensure employee exists: create a fresh employee for this test
+    emp = {
+        "id": 100,
+        "name": "Update Target",
+        "department": "Temp",
+        "salary": 30000
+    }
+    post_resp = client.post("/employees", json=emp)
+    assert post_resp.status_code in (200, 201)  # allow either depending on implementation
+
+    # Now update that employee's department and salary
+    updated = {
+        "id": 100,  # can keep same id
+        "name": "Update Target",
+        "department": "Engineering",
+        "salary": 45000
+    }
+    put_resp = client.put("/employees/100", json=updated)
+    assert put_resp.status_code == 200
+    body = put_resp.json()
+    # depending on your put return shape: check either message + employee or direct employee
+    if "employee" in body:
+        emp_body = body["employee"]
+    else:
+        emp_body = body
+    assert emp_body["department"] == "Engineering"
+    assert emp_body["salary"] == 45000
+
+# -------------- TEST: DELETE (remove employee) ------------------
+def test_delete_employee():
+    # Create a fresh employee to delete
+    emp = {
+        "id": 200,
+        "name": "Delete Target",
+        "department": "Temp",
+        "salary": 25000
+    }
+    post_resp = client.post("/employees", json=emp)
+    assert post_resp.status_code in (200, 201)
+
+    # Delete the employee
+    del_resp = client.delete("/employees/200")
+    assert del_resp.status_code == 200
+    del_body = del_resp.json()
+    # ensure returned deleted employee id matches
+    if "employee" in del_body:
+        deleted = del_body["employee"]
+    else:
+        deleted = del_body
+    assert deleted["id"] == 200
+    assert deleted["name"] == "Delete Target"
+
+    # Verify it's actually gone
+    get_resp = client.get("/employees/200")
+    assert get_resp.status_code == 404
+
+# -------------- OPTIONAL: test delete non-existent returns 404 ------------------
+def test_delete_non_existent_employee():
+    resp = client.delete("/employees/99999")
+    assert resp.status_code == 404

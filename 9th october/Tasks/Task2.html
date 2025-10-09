@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Students</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f6f8;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 30px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #studentContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .student-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .student-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .student-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: #34495e;
+      margin-bottom: 8px;
+    }
+
+    .student-info {
+      font-size: 14px;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Student List</h1>
+  <button onclick="fetchStudents()">Load Students</button>
+  <div id="studentContainer"></div>
+
+  <script>
+    async function fetchStudents() {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/students');
+        const students = await response.json();
+
+        const container = document.getElementById('studentContainer');
+        container.innerHTML = '';
+
+        students.forEach(student => {
+          const div = document.createElement('div');
+          div.className = 'student';
+          div.textContent = `ID: ${student.id}, Name: ${student.name}, Age: ${student.age}`;
+          container.appendChild(div);
+        });
+      } catch (err) {
+        console.error(err);
+        alert('Could not load students');
+      }
+    }
+  </script>
+
+</body>
+</html>

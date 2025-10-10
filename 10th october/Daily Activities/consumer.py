@@ -58,3 +58,7 @@ print("Waiting for messages. Press CTRL+C to exit.")
 
 # Start consuming messages from the queue — this is a blocking call
 channel.start_consuming()
+
+output - 
+Received: {'student_id': 101, 'action': 'generate_certificate', 'email': 'rahul@example.com'}
+Task processed for student: 101

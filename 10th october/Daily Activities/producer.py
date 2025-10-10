@@ -26,3 +26,9 @@ print("Task sent to queue:", task)
 
 # Close the connection
 connection.close()
+
+✅ Example Output
+
+When you run producer.py, you might see:
+
+Task sent to queue: {'student_id': 101, 'action': 'generate_certificate', 'email': 'rahul@example.com'}

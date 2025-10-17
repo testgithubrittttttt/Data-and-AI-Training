@@ -1,0 +1,3 @@
+OrderID,CustomerID,ProductID,Quantity,OrderDate,TotalPrice
+O005,C002,P103,2,2025-10-10,70
+O006,C001,P104,1,2025-10-11,50

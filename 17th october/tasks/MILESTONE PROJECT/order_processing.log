@@ -1,0 +1,17 @@
+2025-10-17 13:05:33,722 - INFO - Starting order consumer...
+2025-10-17 13:05:33,741 - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-10-17 13:05:33,742 - INFO - Socket connected: <socket.socket fd=1612, family=23, type=1, proto=6, laddr=('::1', 54509, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-17 13:05:33,743 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002A5F7018BD0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002A5F7018BD0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-10-17 13:05:33,763 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002A5F7018BD0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-17 13:05:33,764 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002A5F7018BD0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-17 13:05:33,764 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000002A5F7018BD0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-17 13:05:33,765 - INFO - Created channel=1
+2025-10-17 13:05:33,769 - INFO - Waiting for orders. To exit press CTRL+C
+2025-10-17 13:05:42,370 - INFO - Received order: {'OrderID': 'O005', 'CustomerID': 'C002', 'ProductID': 'P103', 'Quantity': 2, 'OrderDate': '2025-10-10'}
+2025-10-17 13:05:42,375 - INFO - Processed order O005 with TotalPrice 70
+2025-10-17 13:05:42,375 - INFO - Saved processed orders to processed_orders.csv
+2025-10-17 13:05:42,375 - INFO - Order processing time: 0.005 seconds
+2025-10-17 13:05:42,376 - INFO - Received order: {'OrderID': 'O006', 'CustomerID': 'C001', 'ProductID': 'P104', 'Quantity': 1, 'OrderDate': '2025-10-11'}
+2025-10-17 13:05:42,378 - INFO - Processed order O006 with TotalPrice 50
+2025-10-17 13:05:42,378 - INFO - Saved processed orders to processed_orders.csv
+2025-10-17 13:05:42,378 - INFO - Order processing time: 0.002 seconds

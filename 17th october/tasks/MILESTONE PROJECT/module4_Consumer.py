@@ -45,3 +45,4 @@ channel.basic_consume(queue='order_queue', on_message_callback=callback)
 
 print('Waiting for orders. To exit press CTRL+C')
 channel.start_consuming()
+

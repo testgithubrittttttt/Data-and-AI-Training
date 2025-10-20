@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-import sqlite3
+from fastapi import FastAPI, HTTPException #allows us to return errors properly (e.g., if something isn’t found).
+from pydantic import BaseModel #helps define models that automatically validate data (e.g., check that Price is a number, not text).
+import sqlite3 #Python’s built-in library to connect to our database
 
 app = FastAPI()
 
@@ -19,11 +19,13 @@ class Customer(BaseModel):
     Email: str
     Country: str
 
+# if we put wrong value which are not according to the pydantic modue given datatype then we get an error 
+
 # Helper function to get DB connection
 def get_db():
     conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
+    conn.row_factory = sqlite3.Row #means results are returned like dictionaries instead of tuples.
+    return conn # we taking dictionaries because it allows us to convert it into json easily, FastAPI needs dictionaries to respond in JSON
 
 ### PRODUCTS ###
 
@@ -32,7 +34,7 @@ def get_products():
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM products")
-    products = cursor.fetchall()
+    products = cursor.fetchall() #It connects to the database and fetches all rows from products table.
     conn.close()
     return [dict(p) for p in products]
 
@@ -48,7 +50,7 @@ def add_product(product: Product):
         conn.commit()
     except sqlite3.IntegrityError:
         conn.close()
-        raise HTTPException(status_code=400, detail="ProductID already exists")
+        raise HTTPException(status_code=400, detail="ProductID already exists") #Catches the case when ProductID already exists.
     conn.close()
     return {"message": "Product added successfully"}
 
@@ -61,11 +63,12 @@ def update_product(product_id: str, product: Product):
         (product.ProductName, product.Category, product.Price, product_id)
     )
     conn.commit()
-    if cursor.rowcount == 0:
+    if cursor.rowcount == 0: #means no record matched (so product doesn’t exist).
         conn.close()
         raise HTTPException(status_code=404, detail="Product not found")
     conn.close()
     return {"message": "Product updated successfully"}
+    #Returns a message confirming update or error if not found.
 
 @app.delete("/products/{product_id}")
 def delete_product(product_id: str):
@@ -75,7 +78,7 @@ def delete_product(product_id: str):
     conn.commit()
     if cursor.rowcount == 0:
         conn.close()
-        raise HTTPException(status_code=404, detail="Product not found")
+        raise HTTPException(status_code=404, detail="Product not found") #If no rows deleted, it means product wasn’t found → raise HTTP 404.
     conn.close()
     return {"message": "Product deleted successfully"}
 
@@ -132,3 +135,4 @@ def delete_customer(customer_id: str):
         raise HTTPException(status_code=404, detail="Customer not found")
     conn.close()
     return {"message": "Customer deleted successfully"}
+

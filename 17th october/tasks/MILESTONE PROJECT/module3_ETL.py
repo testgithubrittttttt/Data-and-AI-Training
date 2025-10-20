@@ -15,8 +15,8 @@ full_data = pd.merge(orders_products, customers, on="CustomerID", how="left")
 full_data["TotalPrice"] = full_data["Quantity"] * full_data["Price"]
 
 # Extract OrderMonth from OrderDate
-full_data["OrderDate"] = pd.to_datetime(full_data["OrderDate"])
-full_data["OrderMonth"] = full_data["OrderDate"].dt.month
+full_data["OrderDate"] = pd.to_datetime(full_data["OrderDate"])#converts the OrderDate string (like "2025-10-03") into a datetime object.
+full_data["OrderMonth"] = full_data["OrderDate"].dt.month #for extracting the month number
 
 # Reorder columns for clarity (optional)
 final_columns = [
@@ -30,3 +30,4 @@ processed_orders = full_data[final_columns]
 processed_orders.to_csv("processed_orders.csv", index=False)
 
 print("ETL processing complete. 'processed_orders.csv' created.")
+
